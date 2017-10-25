@@ -1,8 +1,18 @@
 # Disjoined intervals solution
 
-## How to run
+## Installation
+
+```bash
+  git clone <repo_url>
+  cd disjoined-intervals
+  gem install bundler
+  bundle install
 ```
-  irb -r ./solution.rb
+
+## How to run
+
+```
+  rake console
 ```
 
 Example:
@@ -15,6 +25,16 @@ Example:
     timeline.remove(4, 6) # => [[1, 4], [6, 10], [15, 20]]
     timeline.to_a         # convert to the array
 ```
+
+## Tests
+
+Tests are located in a folder `spec`.
+Run test command:
+
+```
+  rake
+```
+
 ## Dependencies
 
 - ruby version 2.0.0 and greater (tested on 2.4.2)
@@ -22,14 +42,14 @@ Example:
 ## Implementation
 
 Classes:
- - Interval
- - Timeline
+ - [Interval](lib/interval.rb)
+ - [Timeline](lib/timeline.rb)
 
 Class `Timeline` is the main entry point for solution, it uses dependent class `Interval`.
 Basically it is a collection of the `Interval` classes.
 Methods:
- * `add(from, to)` - method merge interval to collection, accept one or two arguments (`from`, `to`). In case of one argument passed: `to` will be equals to `from`
- * `remove(from, to)` - method will extract interval from collection. (you can pass one argument `from` in the same way as `add` method)
+ * `add(from, to)` - method merge interval to collection, accept one or two arguments (`from`, `to`).
+ * `remove(from, to)` - method will extract interval from collection.
  * `to_a` - method converts collection into plain array
  * `clone` - method make a copy of collection
 

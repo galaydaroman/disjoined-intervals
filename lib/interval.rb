@@ -1,47 +1,47 @@
 class Interval
   attr_reader :from, :to
 
-  def initialize(from, to = nil)
+  def initialize(from, to)
     @from = from
-    @to = to || from
+    @to = to
 
     validate!
   end
 
   def <=>(other)
     case
-#   +--+
-#         +--+
+    # +--+
+    #       +--+
     when self.to < other.from
       -3
 
-#       +--+
-#         +--+
+    #     +--+
+    #       +--+
     when self.from < other.from && other.from <= self.to && self.to <= other.to
       -2
 
-#       +------+
-#         +--+
+    #     +------+
+    #       +--+
     when self.from < other.from && self.to > other.to
       -1
 
-#         +--+
-#         +--+
+    #       +--+
+    #       +--+
     when self.from == other.from && self.to == other.to
       0
 
-#          ++
-#         +--+
+    #        ++
+    #       +--+
     when self.from >= other.from && self.to <= other.to
       1
 
-#           +--+
-#         +--+
+    #         +--+
+    #       +--+
     when other.from <= self.from && self.from <= other.to && self.to > other.to
       2
 
-#               +--+
-#         +--+
+    #             +--+
+    #       +--+
     when self.from > other.to
       3
     end
@@ -92,7 +92,7 @@ class Interval
 
   private
 
-    def validate!
-      raise 'Not valid interval [%s-%s]' % [from, to] if to < from
-    end
+  def validate!
+    raise 'Not valid interval [%s-%s]' % [from, to] if to <= from
+  end
 end
